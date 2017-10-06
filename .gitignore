@@ -1,0 +1,15 @@
+# Logs
+*.log
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+
+# dist folder
+dist
+
+# code coverage reports
+coverage
+
+# ignore this file for now, may add to source control in the future
+package-lock.json
