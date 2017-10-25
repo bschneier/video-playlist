@@ -1,0 +1,21 @@
+.playlist-item {
+  border: 1px solid white;
+  padding: 1px;
+  &:hover, &:focus {
+    cursor: pointer;
+  }
+}
+.playlist-item-selected {
+  font-weight: bold;
+  background: #404040;
+}
+.playlist-item-thumb {
+  height: 5rem;
+  width: 5rem;
+  float: left;
+  margin-right: .5rem;
+}
+.playlist-item-description {
+  height: 5rem;
+  padding-left: .5rem;
+}

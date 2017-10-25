@@ -7,9 +7,10 @@ const commonConfig = require('./webpack.common');
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
   plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('src/index.html'),
+      template: path.resolve('app/index.html'),
       favicon: path.resolve('media/favicon.ico'),
       minify: {
         removeComments: true,

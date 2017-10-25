@@ -7,7 +7,7 @@ const commonConfig = require('./webpack.common.js');
 module.exports = webpackMerge(commonConfig, {
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: path.resolve('src'),
+    contentBase: path.resolve('app'),
     historyApiFallback: true,
     hot: true,
     noInfo: false,
@@ -16,7 +16,7 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('src/index.html'),
+      template: path.resolve('app/index.html'),
       favicon: path.resolve('media/favicon.ico')
     })
   ]

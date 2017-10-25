@@ -1,0 +1,6 @@
+<li *ngIf="video" [ngClass]="{'playlist-item': true, 'playlist-item-selected': selected }" (click)="playVideo()">
+  <img [src]="video.thumbnail" class="playlist-item-thumb" />
+  <div class="playlist-item-description">
+    {{video.title}}<br />{{video.length | time}}
+  </div>
+</li>

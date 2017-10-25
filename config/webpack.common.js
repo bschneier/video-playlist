@@ -4,8 +4,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    'vendor': path.resolve('src/vendor.ts'),
-    'app': path.resolve('src/main.ts')
+    'vendor': path.resolve('app/vendor.ts'),
+    'app': path.resolve('app/main.ts')
   },
   target: 'web',
   output: {
@@ -18,7 +18,7 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        include: path.resolve('src'),
+        include: path.resolve('app'),
         loaders: [
           {
             loader: 'awesome-typescript-loader',
@@ -32,15 +32,15 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        include: path.resolve('src/stylesheets'),
+        include: path.resolve('app'),
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader']
         })
       },
       {
-        test: /\.(jpg|gif)$/,
-        include: path.resolve('media/images'),
+        test: /\.(jpg|gif|png)$/,
+        include: path.resolve('media'),
         loader: 'file-loader',
         options: {
           name: 'media/images/[name].[hash].[ext]'
@@ -60,7 +60,6 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin('[name].[hash].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor']

@@ -29,12 +29,15 @@
     "@angular/platform-browser": "^4.4.4",
     "@angular/platform-browser-dynamic": "^4.4.4",
     "@angular/router": "^4.4.4",
+    "@types/videojs": "^5.16.2",
     "core-js": "^2.5.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
+    "video.js": "^6.2.8",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
+    "@angular/cli": "^1.4.9",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.33",
     "angular2-template-loader": "^0.6.2",

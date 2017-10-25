@@ -15,6 +15,6 @@ import 'zone.js/dist/fake-async-test';
 import {TestBed} from '@angular/core/testing';
 import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
 
-let appContext = require.context('../src', true, /\.spec\.ts/);
+let appContext = require.context('../app', true, /\.spec\.ts/);
 appContext.keys().forEach(appContext);
 TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());

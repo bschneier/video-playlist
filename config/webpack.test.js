@@ -7,7 +7,7 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        include: path.resolve('src'),
+        include: path.resolve('app'),
         loaders: [
           {
             loader: 'awesome-typescript-loader',
@@ -21,9 +21,30 @@ module.exports = {
         loader: 'html-loader'
       },
       {
+        test: /\.s?css$/,
+        include: path.resolve('app'),
+        loaders: ['css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(jpg|gif|png)$/,
+        include: path.resolve('media'),
+        loader: 'file-loader',
+        options: {
+          name: 'media/images/[name].[hash].[ext]'
+        }
+      },
+      {
+        test: /\.mp4$/,
+        include: path.resolve('media/videos'),
+        loader: 'file-loader',
+        options: {
+          name: 'media/videos/[name].[hash].[ext]'
+        }
+      },
+      {
         test: /.ts$/,
         loader: 'istanbul-instrumenter-loader',
-        include: path.resolve(__dirname, '../src/'),
+        include: path.resolve(__dirname, '../app/'),
         exclude: [/.spec.ts/],
         enforce: 'post',
         options: {
