@@ -23,13 +23,13 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     comp = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('img'));
   });
 
   it('should create component', () => expect(comp).toBeDefined() );
 
   it('should have <img>', () => {
     fixture.detectChanges();
+    de = fixture.debugElement.query(By.css('img'));
     expect(de).toBeDefined();
   });
 });
