@@ -17,7 +17,7 @@ module.exports = webpackMerge(commonConfig, {
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve('app/index.html'),
-      favicon: path.resolve('media/favicon.ico')
+      favicon: path.resolve('assets/favicon.ico')
     })
   ]
 });

@@ -22,23 +22,14 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        include: path.resolve('app'),
         loaders: ['css-loader', 'sass-loader']
       },
       {
-        test: /\.(jpg|gif|png)$/,
-        include: path.resolve('media'),
+        test: /\.(jpg|gif|png|mp4|woff|eot|ttf|svg)$/,
+        include: path.resolve('assets'),
         loader: 'file-loader',
         options: {
-          name: 'media/images/[name].[hash].[ext]'
-        }
-      },
-      {
-        test: /\.mp4$/,
-        include: path.resolve('media/videos'),
-        loader: 'file-loader',
-        options: {
-          name: 'media/videos/[name].[hash].[ext]'
+          name: 'assets/[name].[hash].[ext]'
         }
       },
       {

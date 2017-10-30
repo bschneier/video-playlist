@@ -8,7 +8,7 @@ export class PlaylistService {
   constructor() { }
 
   getPlaylist(): Video[] {
-    return [
+    return this.shufflePlaylist([
       new Video(4, [ new VideoSource('video/mp4', 'https://www.dropbox.com/s/cp96b9k5wurj4pv/chase-budinger.mp4?dl=1') ],
         'https://www.dropbox.com/s/zztwb841hdoflgs/chase-budinger.png?dl=1', 'Chase Budinger Bounce'),
       new Video(19, [ new VideoSource('video/mp4', 'https://www.dropbox.com/s/2xquih811up34nz/murilo.mp4?dl=1') ],
@@ -23,6 +23,16 @@ export class PlaylistService {
         'https://www.dropbox.com/s/d9xeinwy2h6i9yw/dante.png?dl=1', 'Dante Bounce'),
       new Video(241, [ new VideoSource('video/mp4', 'https://www.dropbox.com/s/64fgvj887i9wa5f/spikes.mp4?dl=1') ],
         'https://www.dropbox.com/s/h8btyvj11trqn3q/spikes.png?dl=1', 'Face shots')
-    ];
+    ]);
+  }
+
+  shufflePlaylist(playlist: Video[]): Video[] {
+    for (let i = playlist.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = playlist[i];
+        playlist[i] = playlist[j];
+        playlist[j] = temp;
+    }
+    return playlist;
   }
 }

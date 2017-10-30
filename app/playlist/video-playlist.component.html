@@ -1,12 +1,19 @@
 <div *ngIf="videos.length > 0" class="row justify-content-center">
   <div class="col-12 col-md-7 col-lg-6">
-    <video-player></video-player>
+    <video-player (onEnded)="onEnded()"></video-player>
   </div>
   <div class="col-12 col-md-5 col-lg-4 video-list-container">
+    <div class="video-list-heading">
+      Up Next
+      <div class="continuous-play-icon">
+        <i [ngClass]="{'fi-loop': true, 'continuous-play-icon-selected': continuousPlay }" (click)="onContinuousPlayToggle()"></i>
+      </div>
+    </div>
     <ul class="video-list">
       <playlist-item *ngFor="let video of videos; index as i"
         [video]="video"
-        [index]="i"></playlist-item>
+        [index]="i"
+        [selected]="currentIndex === i"></playlist-item>
     </ul>
   </div>
 </div>

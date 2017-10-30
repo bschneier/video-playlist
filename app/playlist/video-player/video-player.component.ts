@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { Video } from '../../shared/types/video';
 import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
+import './video-player.component.scss';
 const videojs = require('video.js');
 
 @Component({
@@ -10,6 +11,7 @@ const videojs = require('video.js');
   templateUrl: './video-player.component.html'
 })
 export class VideoPlayerComponent implements OnInit, OnDestroy {
+  @Output() onEnded = new EventEmitter();
   poster: string = "";
   source: string = "";
   type: string = "";
@@ -20,6 +22,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.videoPlayer = videojs('mainVideoPlayer');
+
+    this.videoPlayer.on('ended', () => {
+      this.onEnded.emit();
+    });
 
     this.videoSubscription = this._videoPlayerService.getVideo().subscribe((value: LoadVideoRequest) => {
       if(value) {

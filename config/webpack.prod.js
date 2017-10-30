@@ -12,7 +12,7 @@ module.exports = webpackMerge(commonConfig, {
     new HtmlPlugin({
       inject: true,
       template: path.resolve('app/index.html'),
-      favicon: path.resolve('media/favicon.ico'),
+      favicon: path.resolve('assets/favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
