@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { VideoPlaylistComponent } from './video-playlist.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { PlaylistItemComponent } from './playlist-item/playlist-item.component';
@@ -13,7 +14,7 @@ describe('VideoPlaylistComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ VideoPlaylistComponent, VideoPlayerComponent, PlaylistItemComponent, TimePipe ],
-      providers: [ PlaylistService, VideoPlayerService ]
+      providers: [ PlaylistService, VideoPlayerService, ScrollToService ]
     })
     .compileComponents();
   }));

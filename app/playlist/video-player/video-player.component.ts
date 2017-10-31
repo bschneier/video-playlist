@@ -18,7 +18,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   videoSubscription: Subscription = null;
   videoPlayer: videojs.Player = null;
   videoOptions: object = {};
-  isYouTube: boolean = false;
+  currentVideoIsYouTube: boolean = false;
   shouldBePlaying: boolean = false;
 
   constructor(private _videoPlayerService: VideoPlayerService) { }
@@ -31,9 +31,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     });
 
     // YouTube videos don't play when loaded in chrome because we get
-    // cross origin errors when loading ads
+    // cross origin errors when loading ads, so we need to manually
+    // play them after they load
     this.videoPlayer.on('loadedmetadata', () => {
-      if(this.videoPlayer.paused() && this.isYouTube && this.shouldBePlaying) {
+      if(this.videoPlayer.paused() && this.currentVideoIsYouTube && this.shouldBePlaying) {
         this.shouldBePlaying = false;
         this.videoPlayer.play();
       }
@@ -42,7 +43,8 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.videoSubscription = this._videoPlayerService.getVideo().subscribe((value: LoadVideoRequest) => {
       if(value) {
         if(value.video.sources[0].type === "video/youtube") {
-          this.isYouTube = this.shouldBePlaying = true;
+          this.currentVideoIsYouTube = true;
+          this.shouldBePlaying = value.play;
           this.videoOptions = {
             techOrder: ["youtube"],
             youtube: {
