@@ -3,9 +3,10 @@ import { BehaviorSubject } from 'rxjs';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { Video } from '../../shared/types/video';
 import { LoadVideoRequest} from '../../shared/types/loadVideoRequest';
+import { IVideoPlayerService } from './video-player.service.interface';
 
 @Injectable()
-export class VideoPlayerService {
+export class VideoPlayerService implements IVideoPlayerService {
   private playVideoSubject: BehaviorSubject<LoadVideoRequest> = new BehaviorSubject(null);
   private currentlyPlayingSubject: BehaviorSubject<number> = new BehaviorSubject(0);
 
