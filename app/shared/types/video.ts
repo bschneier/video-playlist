@@ -1,7 +1,7 @@
 import { VideoSource } from './videoSource';
 
 export class Video {
-  public length: number = 0;
+  public length = 0;
   public sources: VideoSource[] = null;
   public thumbnail: string = null;
   public title: string = null;

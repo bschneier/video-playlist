@@ -28,8 +28,8 @@ export class PlaylistService {
 
   shufflePlaylist(playlist: Video[]): Video[] {
     for (let i = playlist.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        let temp = playlist[i];
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = playlist[i];
         playlist[i] = playlist[j];
         playlist[j] = temp;
     }

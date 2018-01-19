@@ -12,8 +12,8 @@ import './video-playlist.component.scss';
 export class VideoPlaylistComponent implements OnInit, OnDestroy {
   private videos: Video[] = null;
   currentlyPlayingSubscription: Subscription = null;
-  currentIndex: number = 0;
-  continuousPlay: boolean = true;
+  currentIndex = 0;
+  continuousPlay = true;
 
   constructor(private _playlistService: PlaylistService,
               private _videoPlayerService: VideoPlayerService) { }
@@ -31,7 +31,7 @@ export class VideoPlaylistComponent implements OnInit, OnDestroy {
   }
 
   onEnded() {
-    if(this.currentIndex < this.videos.length - 1 && this.continuousPlay) {
+    if (this.currentIndex < this.videos.length - 1 && this.continuousPlay) {
       this._videoPlayerService.loadVideo(this.videos[this.currentIndex + 1], this.currentIndex + 1, true);
     }
   }

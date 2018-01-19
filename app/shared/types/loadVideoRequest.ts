@@ -2,7 +2,7 @@ import { Video } from './video';
 
 export class LoadVideoRequest {
   video: Video = null;
-  play: boolean = false;
+  play = false;
 
   constructor(video: Video, play: boolean) {
     this.video = video;

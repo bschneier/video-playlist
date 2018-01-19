@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { Video } from '../../shared/types/video';
-import { VideoSource } from '../../shared/types/videoSource';
 import './playlist-item.component.scss';
 
 @Component({
@@ -11,8 +9,8 @@ import './playlist-item.component.scss';
 })
 export class PlaylistItemComponent {
   @Input() video: Video = null;
-  @Input() index: number = 0;
-  @Input() selected: boolean = false;
+  @Input() index = 0;
+  @Input() selected = false;
 
   constructor(private _videoPlayerService: VideoPlayerService) {}
 

@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
-import { Video } from '../../shared/types/video';
 import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
-const videojs = require('video.js');
+const videojs = require('video.js'); // tslint:disable-line:no-var-requires
 import 'videojs-youtube';
 
 @Component({
@@ -12,14 +11,14 @@ import 'videojs-youtube';
 })
 export class VideoPlayerComponent implements OnInit, OnDestroy {
   @Output() onEnded = new EventEmitter();
-  poster: string = "";
-  source: string = "";
-  type: string = "";
+  poster = '';
+  source = '';
+  type = '';
   videoSubscription: Subscription = null;
   videoPlayer: videojs.Player = null;
   videoOptions: object = {};
-  currentVideoIsYouTube: boolean = false;
-  shouldBePlaying: boolean = false;
+  currentVideoIsYouTube = false;
+  shouldBePlaying = false;
 
   constructor(private _videoPlayerService: VideoPlayerService) { }
 
@@ -34,28 +33,28 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     // cross origin errors when loading ads, so we need to manually
     // play them after they load
     this.videoPlayer.on('loadedmetadata', () => {
-      if(this.videoPlayer.paused() && this.currentVideoIsYouTube && this.shouldBePlaying) {
+      if (this.videoPlayer.paused() && this.currentVideoIsYouTube && this.shouldBePlaying) {
         this.shouldBePlaying = false;
         this.videoPlayer.play();
       }
     });
 
     this.videoSubscription = this._videoPlayerService.getVideo().subscribe((value: LoadVideoRequest) => {
-      if(value) {
-        if(value.video.sources[0].type === "video/youtube") {
+      if (value) {
+        if (value.video.sources[0].type === 'video/youtube') {
           this.currentVideoIsYouTube = true;
           this.shouldBePlaying = value.play;
           this.videoOptions = {
-            techOrder: ["youtube"],
+            techOrder: ['youtube'],
             youtube: {
               iv_load_options: 3
             }
-          }
+          };
         }
         this.poster = value.video.thumbnail;
         this.videoPlayer.src(value.video.sources);
 
-        if(value.play) {
+        if (value.play) {
           this.videoPlayer.play();
         }
       }
