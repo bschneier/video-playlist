@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import { Subscription } from 'rxjs';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
-const videojs = require('video.js'); // tslint:disable-line:no-var-requires
+// const videojs = require('video.js'); // tslint:disable-line:no-var-requires
+import * as videojs from 'video.js';
 import 'videojs-youtube';
 
 @Component({
