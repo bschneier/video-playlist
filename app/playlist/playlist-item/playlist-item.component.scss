@@ -1,19 +1,22 @@
+@import '../../variables.scss';
+
 .playlist-item {
   border: 1px solid white;
   padding: 1px;
   &:hover, &:focus {
     cursor: pointer;
+    background-color: mat-color($app-accent, lighter);
   }
 }
 .playlist-item-selected {
   font-weight: bold;
-  background: #404040;
+  background-color: mat-color($app-accent, darker);
 }
 .playlist-item-thumb {
   height: 5rem;
   width: 5rem;
   float: left;
-  margin-right: .5rem;
+  margin-right: .25rem;
 }
 .playlist-item-description {
   height: 5rem;

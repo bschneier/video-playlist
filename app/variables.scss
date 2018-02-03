@@ -1,2 +1,10 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$app-primary: mat-palette($mat-red, 900);
+$app-accent: mat-palette($mat-blue-grey, 200, 100, 400);
+$app-theme: mat-light-theme($app-primary, $app-accent);
+@include angular-material-theme($app-theme);
+
 $iPhone6Height: 650px;
 $iPadWidth: 768px;

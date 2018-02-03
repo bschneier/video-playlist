@@ -7,6 +7,10 @@
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 9rem;
+  border: 4px solid mat-color($app-primary);
+  border-radius: 5px;
+  padding: 2px;
+  overflow-y: auto;
   @media screen and (min-height: $iPhone6Height) and (max-width: $iPadWidth) {
     max-height: 13rem;
   }
@@ -20,16 +24,17 @@
     max-height: 27rem;
   }
   @media screen and (min-width: $iPadWidth) and (min-height: 600px) {
-    max-height: 29rem;
+    max-height: 100vh;
   }
 }
 .video-list-container {
   margin-bottom: 5rem;
 }
 .video-list-heading {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1.5rem;
-  color: white;
+  color: black;
+  margin-bottom: .5rem;
 }
 .continuous-play-icon {
   float: right;
@@ -40,8 +45,11 @@
   }
 }
 .continuous-play-icon-disabled {
-  color: gray;
+  color: mat-color($app-accent, lighter);
 }
 .video-player-container {
-  padding-top: 2.25rem;
+  padding-top: 2.75rem;
+}
+.video-playlist-main-container {
+  margin-top: 1rem;
 }

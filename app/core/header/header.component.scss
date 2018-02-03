@@ -1,4 +1,14 @@
+@import '../../variables.scss';
+
+.video-playlist-header {
+  text-align: center;
+  padding: 1rem 0;
+  color: white;
+  background-color: mat-color($app-primary);
+}
+
 header {
   text-align: center;
-  margin: 1rem 0;
+  font-size: 3rem;
+  font-weight: 600;
 }
