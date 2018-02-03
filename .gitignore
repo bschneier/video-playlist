@@ -13,6 +13,3 @@ coverage
 
 # ignore this file for now, may add to source control in the future
 package-lock.json
-
-# video files
-assets/videos
