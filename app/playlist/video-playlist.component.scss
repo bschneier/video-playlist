@@ -7,24 +7,27 @@
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 9rem;
-  border: 4px solid mat-color($app-primary);
-  border-radius: 5px;
-  padding: 2px;
   overflow-y: auto;
-  @media screen and (min-height: $iPhone6Height) and (max-width: $iPadWidth) {
+  @media (min-height: $iPhone6Height) and (max-width: $iPadWidth) {
     max-height: 13rem;
   }
-  @media screen and (min-height: 400px) {
+  @media (min-height: 400px) {
     max-height: 13rem;
   }
-  @media screen and (min-height: 475px) {
+  @media (min-height: 475px) {
     max-height: 19rem;
   }
-  @media screen and (min-height: 575px) {
+  @media (min-height: 575px) {
     max-height: 27rem;
   }
-  @media screen and (min-width: $iPadWidth) and (min-height: 600px) {
-    max-height: 100vh;
+  @media (min-width: $iPadWidth) {
+    border: 4px solid mat-color($app-primary);
+    border-radius: 5px;
+    padding: 2px;
+
+    @media (min-height: 600px) {
+      max-height: 100vh;
+    }
   }
 }
 .video-list-container {
