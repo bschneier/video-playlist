@@ -11,13 +11,14 @@ module.exports = webpackMerge(commonConfig, {
     historyApiFallback: true,
     hot: true,
     noInfo: false,
-    port: 3002
+    port: 3002,
+    overlay: true
   },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve('app/index.html'),
-      favicon: path.resolve('assets/favicon.ico')
+      favicon: path.resolve('assets/images/video-playlist-iphone-120.png')
     })
   ]
 });

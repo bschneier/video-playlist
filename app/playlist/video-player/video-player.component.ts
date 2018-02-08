@@ -4,6 +4,7 @@ import { VideoPlayerService } from '../video-player-service/video-player.service
 import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
 import * as videojs from 'video.js';
 import 'videojs-youtube';
+import './video-player.component.scss';
 
 @Component({
   selector: 'video-player',

@@ -23,12 +23,16 @@ module.exports = {
           {
             loader: 'awesome-typescript-loader',
             options: { configFileName: path.resolve('config/tsconfig.json') }
-          } , 'angular2-template-loader'
+          },
+          'angular2-template-loader'
         ]
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'html-loader',
+        options: {
+          attrs: ['img:src', 'link:href']
+        }
       },
       {
         test: /\.s?css$/,
@@ -43,6 +47,14 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: 'assets/[name].[hash].[ext]'
+        }
+      },
+      {
+        test: /\.json$/,
+        include: path.resolve('app'),
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
         }
       }
     ]
