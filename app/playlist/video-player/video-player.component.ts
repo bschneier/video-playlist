@@ -12,7 +12,6 @@ import './video-player.component.scss';
 })
 export class VideoPlayerComponent implements OnInit, OnDestroy {
   @Output() onEnded = new EventEmitter();
-  poster = '';
   source = '';
   type = '';
   videoSubscription: Subscription = null;
@@ -52,8 +51,9 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
             }
           };
         }
-        this.poster = value.video.thumbnail;
+
         this.videoPlayer.src(value.video.sources);
+        this.videoPlayer.poster(value.video.thumbnail);
 
         if (value.play) {
           this.videoPlayer.play();
