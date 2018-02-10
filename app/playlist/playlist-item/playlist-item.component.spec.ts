@@ -3,6 +3,7 @@ import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { PlaylistItemComponent } from './playlist-item.component';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { TimePipe } from '../time-pipe/time.pipe';
+import { SafeUrlPipe } from '../../shared/pipes/safe-url/safe-url.pipe';
 
 describe('PlaylistItemComponent', () => {
   let component: PlaylistItemComponent;
@@ -10,7 +11,7 @@ describe('PlaylistItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaylistItemComponent, TimePipe ],
+      declarations: [ PlaylistItemComponent, TimePipe, SafeUrlPipe ],
       providers: [ VideoPlayerService, ScrollToService ]
     })
     .compileComponents();
