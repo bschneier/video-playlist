@@ -5,6 +5,7 @@ import { routes } from './routes';
 import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MatSnackBarModule } from '@angular/material';
 
 describe('AppComponent', () => {
   let de: DebugElement;
@@ -14,7 +15,7 @@ describe('AppComponent', () => {
   // TODO: only define routes needed for testing, maybe don't want to test this file at all?
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule.withRoutes(routes), CoreModule ],
+      imports: [ RouterTestingModule.withRoutes(routes), CoreModule, MatSnackBarModule ],
       declarations: [ AppComponent ]
     })
     .compileComponents();
