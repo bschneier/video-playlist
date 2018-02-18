@@ -1,26 +1,30 @@
-@import '../variables.scss';
+@import '../variables';
 
 .video-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
   overflow-x: hidden;
   max-height: 9rem;
   overflow-y: auto;
-  @media (min-height: $iPhone6Height) and (max-width: $iPadWidth) {
+
+  @media (min-height: $iphone6-height) and (max-width: $ipad-width) {
     max-height: 13rem;
   }
+
   @media (min-height: 400px) {
     max-height: 13rem;
   }
+
   @media (min-height: 475px) {
     max-height: 19rem;
   }
+
   @media (min-height: 575px) {
     max-height: 27rem;
   }
-  @media (min-width: $iPadWidth) {
+
+  @media (min-width: $ipad-width) {
     border: 4px solid mat-color($app-primary);
     border-radius: 5px;
     padding: 2px;
@@ -30,29 +34,36 @@
     }
   }
 }
+
 .video-list-container {
   margin-bottom: 5rem;
 }
+
 .video-list-heading {
   font-weight: 600;
   font-size: 1.5rem;
   color: black;
   margin-bottom: .5rem;
 }
+
 .continuous-play-icon {
   float: right;
   padding-right: 1.5rem;
   font-weight: normal;
+
   &:hover, &:focus {
     cursor: pointer;
   }
 }
+
 .continuous-play-icon-disabled {
   color: mat-color($app-accent, lighter);
 }
+
 .video-player-container {
   padding-top: 2.75rem;
 }
+
 .video-playlist-main-container {
   margin-top: 1rem;
 }
