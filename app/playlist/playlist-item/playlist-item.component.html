@@ -2,7 +2,10 @@
   [ngClass]="{'playlist-item': true, 'playlist-item-selected': selected }"
   (click)="playVideo()"
   id="{{'playlistItem' + index}}">
-  <img [src]="video.thumbnail | safeUrl" class="playlist-item-thumb" />
+  <div class="playlist-item-thumb-container">
+    <spinner *ngIf="imageLoading" size="small"></spinner>
+    <img [src]="video.thumbnail | safeUrl" (load)="imageLoaded()" class="playlist-item-thumb" [ngClass]="{ 'image-loading': imageLoading }" />
+  </div>
   <div class="playlist-item-description">
     {{video.title}}<br />{{video.length | time}}
   </div>

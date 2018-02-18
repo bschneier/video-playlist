@@ -1,24 +1,37 @@
-@import '../../variables.scss';
+@import '../../variables';
 
 .playlist-item {
   border: 1px solid white;
   padding: 1px;
+
   &:hover, &:focus {
     cursor: pointer;
     background-color: mat-color($app-accent, lighter);
   }
 }
+
 .playlist-item-selected {
   font-weight: bold;
   background-color: mat-color($app-accent, darker);
 }
+
 .playlist-item-thumb {
+  height: 5rem;
+  width: 5rem;
+}
+
+.playlist-item-description {
+  height: 5rem;
+  padding-left: .5rem;
+}
+
+.playlist-item-thumb-container {
   height: 5rem;
   width: 5rem;
   float: left;
   margin-right: .25rem;
 }
-.playlist-item-description {
-  height: 5rem;
-  padding-left: .5rem;
+
+.image-loading {
+  display: none;
 }

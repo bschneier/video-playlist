@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import './spinner.component.scss';
 
 @Component({
@@ -6,5 +6,7 @@ import './spinner.component.scss';
   templateUrl: './spinner.component.html'
 })
 export class SpinnerComponent {
+  @Input() size = 'medium';
+
   constructor() { }
 }

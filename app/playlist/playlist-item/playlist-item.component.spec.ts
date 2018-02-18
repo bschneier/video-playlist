@@ -4,6 +4,7 @@ import { PlaylistItemComponent } from './playlist-item.component';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { TimePipe } from '../time-pipe/time.pipe';
 import { SafeUrlPipe } from '../../shared/pipes/safe-url/safe-url.pipe';
+import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 
 describe('PlaylistItemComponent', () => {
   let component: PlaylistItemComponent;
@@ -11,7 +12,7 @@ describe('PlaylistItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaylistItemComponent, TimePipe, SafeUrlPipe ],
+      declarations: [ PlaylistItemComponent, TimePipe, SafeUrlPipe, SpinnerComponent ],
       providers: [ VideoPlayerService, ScrollToService ]
     })
     .compileComponents();
