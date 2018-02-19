@@ -26,13 +26,15 @@ module.exports = webpackMerge(commonConfig, {
         useShortDoctype: true
       }
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true
+    }),
     new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
-      minRatio: 0
+      minRatio: 0.8
     })
   ]
 });

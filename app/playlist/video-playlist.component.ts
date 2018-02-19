@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { Video } from '../shared/types/video';
 import { PlaylistService } from './playlist-service/playlist.service';
 import { VideoPlayerService} from './video-player-service/video-player.service';

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
 import * as videojs from 'video.js';

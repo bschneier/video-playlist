@@ -7,7 +7,7 @@ import { CoreModule } from './core/core.module';
 import { PlaylistModule } from './playlist/playlist.module';
 import { routes } from './routes';
 import { AppComponent } from './app.component';
-import { MatSnackBarModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports:      [

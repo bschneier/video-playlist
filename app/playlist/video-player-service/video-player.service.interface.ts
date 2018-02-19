@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
 import { Video } from '../../shared/types/video';
 
