@@ -9,19 +9,19 @@
   "background_color": "white",
   "icons": [
     {
-      "src": "../assets/images/video-playlist-android-96.png",
+      "src": "../assets/icons/video-playlist-android-96.png",
       "sizes": "96x96"
     },
     {
-      "src": "../assets/images/video-playlist-android-144.png",
+      "src": "../assets/icons/video-playlist-android-144.png",
       "sizes": "144x144"
     },
     {
-      "src": "../assets/images/video-playlist-android-192.png",
+      "src": "../assets/icons/video-playlist-android-192.png",
       "sizes": "192x192"
     },
     {
-      "src": "../assets/images/video-playlist-android-512.png",
+      "src": "../assets/icons/video-playlist-android-512.png",
       "sizes": "512x512"
     }
   ]
