@@ -1,9 +1,25 @@
 {
-  /*
-    This file is needed to suppress experimental decorators warnings in VS Code.
-    It is not used as part of any build or compilation tasks.
-  */
   "compilerOptions": {
-    "experimentalDecorators": true
-  }
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "lib": [ "es2015", "dom" ],
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "compileOnSave": true,
+  "include": [
+    "app/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

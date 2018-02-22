@@ -12,7 +12,7 @@
       ],
       "index": "index.html",
       "main": "main.ts",
-      "tsconfig": "config/tsconfig.json"
+      "tsconfig": "tsconfig.json"
     }
   ],
   "defaults": {
