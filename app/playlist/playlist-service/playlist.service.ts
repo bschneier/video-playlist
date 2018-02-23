@@ -24,8 +24,8 @@ export class PlaylistService implements IPlaylistService {
         imagePath('./moss.png'), 'Randy Moss Catch'),
       new Video(25, [ new VideoSource('video/youtube', 'https://www.youtube.com/watch?v=uosTUGDIdx0') ],
         imagePath('./julio-jones.jpg'), 'Julio Jones Pregame Catch'),
-      // new Video(78, [ new VideoSource('video/youtube', 'https://www.youtube.com/watch?v=VkvTLOhm-TQ') ],
-      //   imagePath('./lebron.jpg'), 'Lebron James Buzzer Beater')
+      new Video(78, [ new VideoSource('video/youtube', 'https://www.youtube.com/watch?v=VkvTLOhm-TQ') ],
+        imagePath('./lebron.jpg'), 'Lebron James Buzzer Beater')
     ]);
   }
 
