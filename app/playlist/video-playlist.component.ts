@@ -10,7 +10,7 @@ import './video-playlist.component.scss';
   templateUrl: './video-playlist.component.html'
 })
 export class VideoPlaylistComponent implements OnInit, OnDestroy {
-  private videos: Video[] = null;
+  videos: Video[] = null;
   currentlyPlayingSubscription: Subscription = null;
   currentIndex = 0;
   continuousPlay = true;
