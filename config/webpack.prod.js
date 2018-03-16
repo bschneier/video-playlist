@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const HtmlPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const commonConfig = require('./webpack.common');
 
@@ -12,7 +13,6 @@ module.exports = webpackMerge(commonConfig, {
     new HtmlPlugin({
       inject: true,
       template: path.resolve('app/index.html'),
-      favicon: path.resolve('assets/icons/video-playlist-iphone-120.png'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -35,6 +35,14 @@ module.exports = webpackMerge(commonConfig, {
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      }
+    }),
+    new CopyWebpackPlugin([
+      { from: `${path.resolve('node_modules')}\\@angular\\service-worker\\ngsw-worker.js` }
+    ])
   ]
 });

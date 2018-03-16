@@ -1,0 +1,31 @@
+{
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "resources": {
+      "files": [
+        "/index.html"
+      ],
+      "versionedFiles": [
+        "/*.css.gz",
+        "/*.js.gz"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/images/thumbnails/*.*"
+      ],
+      "urls": [
+        "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+        "//vjs.zencdn.net/6.2.8/video-js.min.css",
+        "http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.*",
+        "https://www.dropbox.com/s/*/*-thumb.png?dl=1"
+      ]
+    }
+  }]
+}

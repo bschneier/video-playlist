@@ -16,6 +16,11 @@ export class AppComponent {
   constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    if (!navigator.onLine) {
+      this.showOfflineBanner();
+    }
+    window.addEventListener('offline', this.showOfflineBanner);
+
     if ((navigator as any).standalone === false) {
       // This is an iOS device and we are in the browser
       this.snackBar.open('You can install this app on your device! To install, tap the ' +
@@ -44,5 +49,9 @@ export class AppComponent {
         });
       }
     }
+  }
+
+  showOfflineBanner() {
+    // TODO
   }
 }

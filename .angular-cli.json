@@ -6,6 +6,7 @@
   "apps": [
     {
       "root": "./",
+      "serviceWorker": true,
       "outDir": "dist",
       "assets": [
         "assets"

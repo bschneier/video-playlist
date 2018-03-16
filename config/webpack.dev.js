@@ -17,8 +17,7 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('app/index.html'),
-      favicon: path.resolve('assets/icons/video-playlist-iphone-120.png')
+      template: path.resolve('app/index.html')
     })
   ]
 });

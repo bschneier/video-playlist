@@ -46,16 +46,12 @@ module.exports = {
         include: path.resolve('assets'),
         loader: 'file-loader',
         options: {
-          name: 'assets/[name].[hash].[ext]'
+          name: '[path][name].[hash].[ext]'
         }
       },
       {
-        test: /\.json$/,
-        include: path.resolve('app'),
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
+        test: /manifest.json$/,
+        loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
       }
     ]
   },
