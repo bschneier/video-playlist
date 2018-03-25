@@ -9,11 +9,11 @@
         <i [ngClass]="{'fi-loop': true, 'continuous-play-icon-disabled': !continuousPlay }" (click)="onContinuousPlayToggle()"></i>
       </div>
     </div>
-    <ul class="video-list">
+    <div class="video-list">
       <playlist-item *ngFor="let video of videos; index as i"
         [video]="video"
         [index]="i"
         [selected]="currentIndex === i"></playlist-item>
-    </ul>
+    </div>
   </div>
 </div>

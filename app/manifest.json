@@ -4,7 +4,7 @@
   "orientation": "any",
   "scope": "/",
   "display": "standalone",
-  "short_name": "VideoPlaylist",
+  "short_name": "VideoList",
   "theme_color": "#b71c1c",
   "background_color": "white",
   "icons": [
