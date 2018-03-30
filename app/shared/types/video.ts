@@ -7,8 +7,8 @@ export class Video {
   public thumbnail: string = null;
   public title: string = null;
 
-  constructor(length: number, poster: string, sources: VideoSource[],
-              thumbnail: string, title: string) {
+  constructor(length: number, thumbnail: string, sources: VideoSource[],
+              poster: string, title: string) {
     this.length = length;
     this.poster = poster;
     this.sources = sources;
