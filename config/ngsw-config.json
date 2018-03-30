@@ -9,7 +9,12 @@
       ],
       "versionedFiles": [
         "/*.css.gz",
-        "/*.js.gz"
+        "/*.js.gz",
+        "/assets/icons/iphone-120.*.png"
+      ],
+      "urls": [
+        "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+        "https://vjs.zencdn.net/6.2.8/video-js.min.css"
       ]
     }
   }, {
@@ -21,10 +26,8 @@
         "/assets/images/thumbnails/*.*"
       ],
       "urls": [
-        "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
-        "//vjs.zencdn.net/6.2.8/video-js.min.css",
-        "http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.*",
-        "https://www.dropbox.com/s/*/*-thumb.png?dl=1"
+        "https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.*",
+        "https://dl.dropboxusercontent.com/*-thumb.png?dl=1"
       ]
     }
   }]
