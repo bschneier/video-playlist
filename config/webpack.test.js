@@ -53,5 +53,18 @@ module.exports = {
           emitErrors: true
       }
     })
-  ]
+  ],
+  // Once stats object is supported, add this to config and update prod/dev configs
+  // https://github.com/webpack/webpack/issues/4230
+  // stats: {
+  //   assets: false,
+  //   chunks: false,
+  //   errors: true,
+  //   errorDetails: true,
+  //   hash: false,
+  //   modules: false,
+  //   timings: false,
+  //   version: false,
+  //   warnings: false
+  // }
 };

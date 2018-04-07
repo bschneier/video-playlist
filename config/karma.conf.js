@@ -23,7 +23,7 @@ module.exports = (config) => {
     },
     coverageIstanbulReporter: {
       // reports can be any that are listed here: https://github.com/istanbuljs/istanbul-reports/tree/590e6b0089f67b723a1fdf57bc7ccc080ff189d7/lib
-      reports: ['html', 'lcovonly', 'text-summary'],
+      reports: ['html', 'text-summary'],
       // base output directory. If you include %browser% in the path it will be replaced with the karma browser name
       dir: path.join(__dirname, '../coverage'),
       // if using webpack and pre-loaders, work around webpack breaking the source path
@@ -43,12 +43,6 @@ module.exports = (config) => {
       thresholds: {
         emitWarning: true, // set to `true` to not fail the test command when thresholds are not met
         global: { // thresholds for all files
-          statements: 75,
-          lines: 75,
-          branches: 75,
-          functions: 75
-        },
-        each: { // thresholds per file
           statements: 75,
           lines: 75,
           branches: 75,
