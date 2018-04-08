@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
