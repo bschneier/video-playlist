@@ -2,8 +2,7 @@ import { PlaylistService } from './playlist.service';
 import { Video } from '../../shared/types/video';
 
 describe('PlaylistService', () => {
-  let service: PlaylistService;
-  beforeEach(() => { service = new PlaylistService(); });
+  const service = new PlaylistService();
 
   function compareVideoArrays(array1: Video[], array2: Video[]): boolean {
     let arraysAreEqual = true;

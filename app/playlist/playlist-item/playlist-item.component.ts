@@ -13,7 +13,7 @@ export class PlaylistItemComponent {
   @Input() selected = false;
   imageLoading = true;
 
-  constructor(private _videoPlayerService: VideoPlayerService) {}
+  constructor(private videoPlayerService: VideoPlayerService) {}
 
   imageLoaded() {
     this.imageLoading = false;
@@ -21,6 +21,6 @@ export class PlaylistItemComponent {
 
   playVideo() {
     this.selected = true;
-    this._videoPlayerService.loadVideo(this.video, this.index, true);
+    this.videoPlayerService.loadVideo(this.video, this.index, true);
   }
 }

@@ -4,6 +4,6 @@ import { Video } from '../../shared/types/video';
 
 export interface IVideoPlayerService {
   loadVideo(video: Video, index: number, play: boolean): void;
-  getVideo(): BehaviorSubject<LoadVideoRequest>;
+  getCurrentVideo(): BehaviorSubject<LoadVideoRequest>;
   getCurrentVideoIndex(): BehaviorSubject<number>;
 }

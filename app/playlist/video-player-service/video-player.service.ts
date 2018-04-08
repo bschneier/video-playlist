@@ -7,26 +7,26 @@ import { IVideoPlayerService } from './video-player.service.interface';
 
 @Injectable()
 export class VideoPlayerService implements IVideoPlayerService {
-  private playVideoSubject: BehaviorSubject<LoadVideoRequest> = new BehaviorSubject(null);
-  private currentlyPlayingSubject: BehaviorSubject<number> = new BehaviorSubject(0);
+  private currentVideoSubject: BehaviorSubject<LoadVideoRequest> = new BehaviorSubject(null);
+  private currentVideoIndexSubject: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  constructor(private _scrollToService: ScrollToService) { }
+  constructor(private scrollToService: ScrollToService) { }
 
   loadVideo(video: Video, index: number, play: boolean): void {
-    this.playVideoSubject.next({ video, play });
-    this.currentlyPlayingSubject.next(index);
+    this.currentVideoSubject.next({ video, play });
+    this.currentVideoIndexSubject.next(index);
 
     const config: ScrollToConfigOptions = {
       target: 'playlistItem' + index.toString()
     };
-    this._scrollToService.scrollTo(config);
+    this.scrollToService.scrollTo(config);
   }
 
-  getVideo(): BehaviorSubject<LoadVideoRequest> {
-    return this.playVideoSubject;
+  getCurrentVideo(): BehaviorSubject<LoadVideoRequest> {
+    return this.currentVideoSubject;
   }
 
   getCurrentVideoIndex(): BehaviorSubject<number> {
-    return this.currentlyPlayingSubject;
+    return this.currentVideoIndexSubject;
   }
 }
