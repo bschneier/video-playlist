@@ -10,3 +10,6 @@ dist
 
 # code coverage reports
 coverage
+
+# test results
+test-results
