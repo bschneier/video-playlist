@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../../shared/types/video';
 import { VideoSource } from '../../shared/types/videoSource';
-import { IPlaylistService } from './playlist.service.interface';
 const imagePath = require.context('./../../../assets/images', true);
 const videoPath = require.context('./../../../assets/videos', false);
 
 @Injectable()
-export class PlaylistService implements IPlaylistService {
-
+export class PlaylistService {
   getPlaylist(): Video[] {
     return this.shufflePlaylist([
       new Video(62, imagePath('./thumbnails/edmonds.png'),
