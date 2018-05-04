@@ -28,5 +28,5 @@ app.use(expressWinston.errorLogger({
   level: "info"
 }));
 let server = app.listen(3002, () => {
-  console.log('Server up and running.')
+  console.log('Server up and running at http://localhost:3002')
 });
