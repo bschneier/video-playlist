@@ -10,6 +10,12 @@ const commonConfig = require('./webpack.common');
 module.exports = webpackMerge(commonConfig, {
   devtool: 'cheap-module-source-map',
   mode: 'production',
+  output: {
+    path: path.resolve('dist'),
+    publicPath: '/',
+    filename: '[name].[hash].js',
+    chunkFilename: '[id].[hash].chunk.js'
+  },
   module: {
     rules: [
       {
@@ -20,6 +26,16 @@ module.exports = webpackMerge(commonConfig, {
           { loader: 'postcss-loader', options: { config: { path: path.resolve('config/postcss.config.js') } } },
           'sass-loader',
         ],
+      },
+      {
+        test: /\.(jpg|gif|png|mp4|woff|eot|svg|ttf)$/,
+        include: path.resolve('assets'),
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[hash].[ext]'
+          }
+        }
       }
     ]
   },

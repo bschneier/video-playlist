@@ -28,6 +28,12 @@ module.exports = webpackMerge(commonConfig, {
     }
   },
   mode: 'development',
+  output: {
+    path: path.resolve('dist'),
+    publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js'
+  },
   module: {
     rules: [
       {
@@ -38,6 +44,16 @@ module.exports = webpackMerge(commonConfig, {
           { loader: 'postcss-loader', options: { config: { path: path.resolve('config/postcss.config.js') } } },
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(jpg|gif|png|mp4|woff|eot|svg|ttf)$/,
+        include: path.resolve('assets'),
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]'
+          }
+        }
       }
     ]
   },

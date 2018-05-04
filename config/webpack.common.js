@@ -8,12 +8,6 @@ module.exports = {
     'app': path.resolve('app/main.ts')
   },
   target: 'web',
-  output: {
-    path: path.resolve('dist'),
-    publicPath: '/',
-    filename: '[name].[hash].js',
-    chunkFilename: '[id].[hash].chunk.js'
-  },
   module: {
     rules: [
       {
@@ -33,16 +27,6 @@ module.exports = {
           loader: 'html-loader',
           options: {
             attrs: ['img:src', 'link:href']
-          }
-        }
-      },
-      {
-        test: /\.(jpg|gif|png|mp4|woff|eot|svg|ttf)$/,
-        include: path.resolve('assets'),
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[hash].[ext]'
           }
         }
       },
