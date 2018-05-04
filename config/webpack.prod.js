@@ -3,13 +3,26 @@ const webpackMerge = require('webpack-merge');
 const HtmlPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 const commonConfig = require('./webpack.common');
 
 module.exports = webpackMerge(commonConfig, {
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.s?css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      }
+    ]
+  },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlPlugin({
       inject: true,
       template: path.resolve('app/index.html'),
@@ -26,9 +39,6 @@ module.exports = webpackMerge(commonConfig, {
         useShortDoctype: true
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    }),
     new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
@@ -36,13 +46,12 @@ module.exports = webpackMerge(commonConfig, {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      }
-    }),
     new CopyWebpackPlugin([
       { from: `${path.resolve('node_modules')}\\@angular\\service-worker\\ngsw-worker.js` }
-    ])
+    ]),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    })
   ]
 });

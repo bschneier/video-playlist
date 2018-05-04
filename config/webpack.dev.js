@@ -12,7 +12,29 @@ module.exports = webpackMerge(commonConfig, {
     hot: true,
     noInfo: false,
     port: 3002,
-    overlay: true
+    overlay: true,
+    stats: {
+      assets: false,
+      builtAt: false,
+      chunks: false,
+      entrypoints: false,
+      errors: true,
+      errorDetails: true,
+      hash: false,
+      modules: false,
+      timings: false,
+      version: false,
+      warnings: true
+    }
+  },
+  mode: 'development',
+  module: {
+    rules: [
+      {
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({

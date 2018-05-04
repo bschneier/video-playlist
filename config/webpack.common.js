@@ -1,6 +1,6 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
   entry: {
@@ -15,11 +15,11 @@ module.exports = {
     chunkFilename: '[id].[hash].chunk.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
         include: path.resolve('app'),
-        loaders: [
+        use: [
           {
             loader: 'awesome-typescript-loader',
             options: { configFileName: path.resolve('tsconfig.json') }
@@ -29,39 +29,63 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
-        options: {
-          attrs: ['img:src', 'link:href']
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: ['img:src', 'link:href']
+          }
         }
-      },
-      {
-        test: /\.s?css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
       },
       {
         test: /\.(jpg|gif|png|mp4|woff|eot|svg|ttf)$/,
         include: path.resolve('assets'),
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[hash].[ext]'
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[hash].[ext]'
+          }
         }
       },
       {
         test: /manifest.json$/,
-        loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
-      }
+        type: 'javascript/auto',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'manifest.json'
+            }
+          },
+          'app-manifest-loader'
+        ]
+      },
+      // Ignore warnings about System.import in Angular
+      { test: /[\/\\]@angular[\/\\].+\.js$/, parser: { system: true } }
     ]
   },
   resolve: {
     extensions: ['.ts', '.js']
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
+  },
   plugins: [
-    new ExtractTextPlugin('[name].[hash].css'),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor']
-    })
-  ]
+    new CheckerPlugin(),
+    new webpack.ContextReplacementPlugin(/(.+)?angular(\\|\/)core(.+)?/, path.resolve(__dirname, '../app')),
+  ],
+  stats: {
+    assets: true,
+    builtAt: false,
+    chunks: true,
+    entrypoints: false,
+    errors: true,
+    errorDetails: true,
+    hash: false,
+    modules: false,
+    timings: false,
+    version: false,
+    warnings: true
+  }
 };

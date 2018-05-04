@@ -1,14 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
   devtool: 'inline-source-map',
+  mode: 'development',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
         include: path.resolve('app'),
-        loaders: [
+        use: [
           {
             loader: 'awesome-typescript-loader',
             options: { configFileName: path.resolve('tsconfig.json') }
@@ -18,53 +20,48 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        use: 'html-loader'
       },
       {
         test: /\.s?css$/,
-        loaders: ['css-loader', 'sass-loader']
+        use: ['css-loader', 'sass-loader']
       },
       {
         test: /\.(jpg|gif|png|mp4|woff|eot|ttf|svg)$/,
         include: path.resolve('assets'),
-        loader: 'file-loader',
-        options: {
-          name: 'assets/[name].[hash].[ext]'
-        }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'assets/[name].[hash].[ext]'
+          }
+        }]
       },
       {
         test: /.ts$/,
-        loader: 'istanbul-instrumenter-loader',
+        use: [{
+          loader: 'istanbul-instrumenter-loader',
+          options: {
+            esModules: true
+          }
+        }],
         include: path.resolve(__dirname, '../app/'),
         exclude: [/.spec.ts/],
-        enforce: 'post',
-        options: {
-          esModules: true
-        }
-      }
+        enforce: 'post'
+      },
+      // Ignore warnings about System.import in Angular
+      { test: /[\/\\]@angular[\/\\].+\.js$/, parser: { system: true } }
     ]
   },
   resolve: {
     extensions: ['.js', '.ts']
   },
   plugins: [
+    new CheckerPlugin(),
+    new webpack.ContextReplacementPlugin(/(.+)?angular(\\|\/)core(.+)?/, path.resolve(__dirname, '../app')),
     new webpack.LoaderOptionsPlugin({
       options: {
           emitErrors: true
       }
     })
-  ],
-  // Once stats object is supported, add this to config and update prod/dev configs
-  // https://github.com/webpack/webpack/issues/4230
-  // stats: {
-  //   assets: false,
-  //   chunks: false,
-  //   errors: true,
-  //   errorDetails: true,
-  //   hash: false,
-  //   modules: false,
-  //   timings: false,
-  //   version: false,
-  //   warnings: false
-  // }
+  ]
 };
