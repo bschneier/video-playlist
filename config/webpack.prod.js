@@ -17,6 +17,7 @@ module.exports = webpackMerge(commonConfig, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          { loader: 'postcss-loader', options: { config: { path: path.resolve('config/postcss.config.js') } } },
           'sass-loader',
         ],
       }

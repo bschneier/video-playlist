@@ -24,7 +24,12 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        use: ['css-loader', 'sass-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          { loader: 'postcss-loader', options: { config: { path: path.resolve('config/postcss.config.js') } } },
+          'sass-loader'
+        ]
       },
       {
         test: /\.(jpg|gif|png|mp4|woff|eot|ttf|svg)$/,

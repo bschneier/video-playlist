@@ -32,7 +32,12 @@ module.exports = webpackMerge(commonConfig, {
     rules: [
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          { loader: 'postcss-loader', options: { config: { path: path.resolve('config/postcss.config.js') } } },
+          'sass-loader'
+        ]
       }
     ]
   },
