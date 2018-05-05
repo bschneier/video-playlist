@@ -13,3 +13,5 @@ coverage
 
 # test results
 test-results
+
+package-lock.json
