@@ -11,7 +11,7 @@ import './video-playlist.component.scss';
 })
 export class VideoPlaylistComponent implements OnInit, OnDestroy {
   videos: Video[] = null;
-  currentIndex$: Subscription = null;
+  currentIndexSubscription: Subscription = null;
   currentIndex = 0;
   continuousPlay = true;
 
@@ -21,13 +21,13 @@ export class VideoPlaylistComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.videos = this.playlistService.getPlaylist();
     this.videoPlayerService.loadVideo(this.videos[0], 0, false);
-    this.currentIndex$ = this.videoPlayerService.getCurrentVideoIndex$.subscribe((index) => {
+    this.currentIndexSubscription = this.videoPlayerService.getCurrentVideoIndex$.subscribe((index) => {
       this.currentIndex = index;
     });
   }
 
   ngOnDestroy() {
-    this.currentIndex$.unsubscribe();
+    this.currentIndexSubscription.unsubscribe();
   }
 
   onEnded() {

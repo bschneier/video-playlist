@@ -14,7 +14,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   @Output() onEnded = new EventEmitter();
   source = '';
   type = '';
-  video$: Subscription = null;
+  videoSubscription: Subscription = null;
   videoPlayer: videojs.Player = null;
   videoOptions: object = {};
   currentVideoIsYouTube = false;
@@ -39,7 +39,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.video$ = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
+    this.videoSubscription = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
         if (value.video.sources[0].type === 'video/youtube') {
           this.currentVideoIsYouTube = true;
@@ -63,6 +63,6 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.video$.unsubscribe();
+    this.videoSubscription.unsubscribe();
   }
 }
