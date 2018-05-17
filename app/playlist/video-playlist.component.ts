@@ -21,7 +21,7 @@ export class VideoPlaylistComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.videos = this.playlistService.getPlaylist();
     this.videoPlayerService.loadVideo(this.videos[0], 0, false);
-    this.currentIndex$ = this.videoPlayerService.getCurrentVideoIndex().subscribe((index) => {
+    this.currentIndex$ = this.videoPlayerService.getCurrentVideoIndex$.subscribe((index) => {
       this.currentIndex = index;
     });
   }

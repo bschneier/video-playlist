@@ -25,7 +25,7 @@ describe('VideoPlayerService', () => {
 
     it('should emit current video', inject([VideoPlayerService], (service: VideoPlayerService) => {
       let lastVideoEmitted: Video;
-      service.getCurrentVideo().subscribe((value: LoadVideoRequest) => {
+      service.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
         if (value) {
           lastVideoEmitted = value.video;
         }
@@ -38,7 +38,7 @@ describe('VideoPlayerService', () => {
     it('should emit current video index', inject([VideoPlayerService], (service: VideoPlayerService) => {
       const testIndexValue = 2;
       let lastVideoIndexEmitted: number;
-      service.getCurrentVideoIndex().subscribe((value: number) => {
+      service.getCurrentVideoIndex$.subscribe((value: number) => {
         if (value) {
           lastVideoIndexEmitted = value;
         }
@@ -54,7 +54,7 @@ describe('VideoPlayerService', () => {
     let lastVideoEmitted: Video;
     service.loadVideo(testVideo, 1, true);
     expect(lastVideoEmitted).toBeUndefined();
-    service.getCurrentVideo().subscribe((value: LoadVideoRequest) => {
+    service.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
         lastVideoEmitted = value.video;
       }
@@ -68,7 +68,7 @@ describe('VideoPlayerService', () => {
     const testIndexValue = 2;
     service.loadVideo(testVideo, testIndexValue, true);
     expect(lastVideoIndexEmitted).toBeUndefined();
-    service.getCurrentVideoIndex().subscribe((value: number) => {
+    service.getCurrentVideoIndex$.subscribe((value: number) => {
       if (value) {
         lastVideoIndexEmitted = value;
       }
