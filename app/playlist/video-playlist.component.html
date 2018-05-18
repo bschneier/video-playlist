@@ -6,7 +6,7 @@
     <div class="video-list-heading">
       Up Next
       <div class="continuous-play-icon" title="Play next video when current video finishes">
-        <i [ngClass]="{'fi-loop': true, 'continuous-play-icon-disabled': !continuousPlay }" (click)="onContinuousPlayToggle()"></i>
+        <i class="fi-loop" [ngClass]="{'continuous-play-icon-disabled': !continuousPlay }" (click)="onContinuousPlayToggle()"></i>
       </div>
     </div>
     <div class="video-list">
