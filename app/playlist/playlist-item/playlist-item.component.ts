@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
-import { Video } from '../../shared/types/video';
+import { Video } from '../../shared/types';
 import './playlist-item.component.scss';
 
 @Component({

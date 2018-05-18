@@ -1,9 +1,9 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { ScrollToService, ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { VideoPlayerService } from './video-player.service';
-import { VideoSource } from '../../shared/types/videoSource';
-import { Video } from '../../shared/types/video';
-import { LoadVideoRequest } from '../../shared/types/loadVideoRequest';
+import { VideoSource } from '../../shared/types';
+import { Video } from '../../shared/types';
+import { LoadVideoRequest } from '../../shared/types';
 
 describe('VideoPlayerService', () => {
   const testVideo = new Video(65, 'thumbnail-source',

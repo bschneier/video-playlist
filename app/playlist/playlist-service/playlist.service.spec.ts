@@ -1,5 +1,5 @@
 import { PlaylistService } from './playlist.service';
-import { Video } from '../../shared/types/video';
+import { Video } from '../../shared/types';
 
 describe('PlaylistService', () => {
   const service = new PlaylistService();

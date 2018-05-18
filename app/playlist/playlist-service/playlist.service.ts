@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Video } from '../../shared/types/video';
-import { VideoSource } from '../../shared/types/videoSource';
+import { Video } from '../../shared/types';
+import { VideoSource } from '../../shared/types';
 const imagePath = require.context('./../../../assets/images', true);
 const videoPath = require.context('./../../../assets/videos', false);
 

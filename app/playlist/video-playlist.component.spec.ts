@@ -4,8 +4,8 @@ import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { VideoPlaylistComponent } from './video-playlist.component';
 import { PlaylistService } from './playlist-service/playlist.service';
 import { VideoPlayerService } from './video-player-service/video-player.service';
-import { Video } from '../shared/types/video';
-import { VideoSource } from '../shared/types/videoSource';
+import { Video } from '../shared/types';
+import { VideoSource } from '../shared/types';
 
 describe('VideoPlaylistComponent', () => {
   let component: VideoPlaylistComponent;

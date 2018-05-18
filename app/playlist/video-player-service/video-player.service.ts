@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
-import { Video } from '../../shared/types/video';
-import { LoadVideoRequest} from '../../shared/types/loadVideoRequest';
+import { Video } from '../../shared/types';
+import { LoadVideoRequest} from '../../shared/types';
 
 @Injectable()
 export class VideoPlayerService {
