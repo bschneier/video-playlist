@@ -51,9 +51,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
             }
           };
         }
+        else {
+          this.videoOptions = {};
+        }
 
         this.videoPlayer.src(value.video.sources);
-        this.videoPlayer.poster(value.video.thumbnail);
+        this.videoPlayer.poster(value.video.poster);
 
         if (value.play) {
           this.videoPlayer.play();
