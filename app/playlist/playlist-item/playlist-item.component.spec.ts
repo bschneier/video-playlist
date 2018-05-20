@@ -5,8 +5,7 @@ import { PlaylistItemComponent } from './playlist-item.component';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { TimePipe } from '../time-pipe/time.pipe';
 import { SafeUrlPipe } from '../../shared/pipes/safe-url/safe-url.pipe';
-import { Video } from '../../shared/types';
-import { VideoSource } from '../../shared/types';
+import { Video, VideoSource } from '../../shared/types';
 
 describe('PlaylistItemComponent', () => {
   let component: PlaylistItemComponent;

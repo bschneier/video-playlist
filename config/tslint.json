@@ -20,6 +20,7 @@
       115
     ],
     "member-access": false,
+    "member-ordering": false,
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
@@ -50,7 +51,6 @@
       true,
       "check-open-brace",
       "check-catch",
-      "check-else",
       "check-whitespace"
     ],
     "ordered-imports": false,

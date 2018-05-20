@@ -4,8 +4,7 @@ import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { VideoPlaylistComponent } from './video-playlist.component';
 import { PlaylistService } from './playlist-service/playlist.service';
 import { VideoPlayerService } from './video-player-service/video-player.service';
-import { Video } from '../shared/types';
-import { VideoSource } from '../shared/types';
+import { Video, VideoSource } from '../shared/types';
 
 describe('VideoPlaylistComponent', () => {
   let component: VideoPlaylistComponent;
@@ -27,16 +26,14 @@ describe('VideoPlaylistComponent', () => {
       providers: [ PlaylistService, VideoPlayerService, ScrollToService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(VideoPlaylistComponent);
+      component = fixture.componentInstance;
+      getPlaylistSpy = spyOn(PlaylistService.prototype, 'getPlaylist').and.returnValue(testVideos);
+      loadVideoSpy = spyOn(VideoPlayerService.prototype, 'loadVideo');
+      fixture.detectChanges();
+    });
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(VideoPlaylistComponent);
-    component = fixture.componentInstance;
-    getPlaylistSpy = spyOn(PlaylistService.prototype, 'getPlaylist').and.returnValue(testVideos);
-    loadVideoSpy = spyOn(VideoPlayerService.prototype, 'loadVideo');
-    fixture.detectChanges();
-  });
 
   describe('on initialization', () => {
     it('should fetch the list of videos', () => {
