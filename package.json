@@ -39,8 +39,8 @@
     "core-js": "2.5.3",
     "reflect-metadata": "0.1.12",
     "rxjs": "5.5.6",
-    "video.js": "6.6.3",
-    "videojs-youtube": "2.4.1",
+    "video.js": "7.0.3",
+    "videojs-youtube": "2.5.0",
     "zone.js": "0.8.20"
   },
   "devDependencies": {

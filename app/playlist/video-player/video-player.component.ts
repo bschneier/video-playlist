@@ -29,16 +29,6 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       this.onEnded.emit();
     });
 
-    // YouTube videos don't play when loaded in chrome because we get
-    // cross origin errors when loading ads, so we need to manually
-    // play them after they load
-    this.videoPlayer.on('loadedmetadata', () => {
-      if (this.videoPlayer.paused() && this.currentVideoIsYouTube && this.shouldBePlaying) {
-        this.shouldBePlaying = false;
-        this.videoPlayer.play();
-      }
-    });
-
     this.videoSubscription = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
         if (value.video.sources[0].type === 'video/youtube') {
