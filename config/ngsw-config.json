@@ -14,7 +14,7 @@
       ],
       "urls": [
         "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
-        "https://vjs.zencdn.net/6.2.8/video-js.min.css"
+        "https://vjs.zencdn.net/7.0.3/video-js.min.css"
       ]
     }
   }, {

@@ -29,6 +29,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       this.onEnded.emit();
     });
 
+    this.videoPlayer.on('loadedmetadata', () => {
+      if (this.currentVideoIsYouTube && this.shouldBePlaying && this.videoPlayer.paused()) {
+        this.videoPlayer.one('click', () => {});
+      }
+    });
+
     this.videoSubscription = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
         if (value.video.sources[0].type === 'video/youtube') {
