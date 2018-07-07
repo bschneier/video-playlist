@@ -5,7 +5,6 @@ import { PlaylistItemComponent } from './playlist-item.component';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { TimePipe } from '../time-pipe/time.pipe';
 import { SafeUrlPipe } from '../../shared/pipes/safe-url/safe-url.pipe';
-import { Video, VideoSource } from '../../shared/types';
 
 describe('PlaylistItemComponent', () => {
   let component: PlaylistItemComponent;
@@ -13,8 +12,13 @@ describe('PlaylistItemComponent', () => {
   const testVideoLength = 65;
   const testVideoThumnailSource = 'thumbnail-source-path';
   const testIndexValue = 1;
-  const testVideo = new Video(testVideoLength, testVideoThumnailSource,
-    [ new VideoSource('video/mp4', 'video-source') ], 'poster-path', 'video description');
+  const testVideo = {
+    length: testVideoLength,
+    thumbnail: testVideoThumnailSource,
+    sources: [ { type: 'video/mp4', src: 'video-source' } ],
+    poster: 'poster-path',
+    title: 'video description'
+  };
 
   function setTestInputs() {
     component.video = testVideo;
@@ -95,7 +99,7 @@ describe('PlaylistItemComponent', () => {
       setTestInputs();
       component.playVideo();
       expect(loadVideoSpy).toHaveBeenCalledTimes(1);
-      expect(loadVideoSpy).toHaveBeenCalledWith(testVideo, testIndexValue, true);
+      expect(loadVideoSpy).toHaveBeenCalledWith(testVideo, testIndexValue, true, true, true);
     });
   });
 

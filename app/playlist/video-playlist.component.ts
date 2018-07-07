@@ -14,13 +14,15 @@ export class VideoPlaylistComponent implements OnInit, OnDestroy {
   currentIndexSubscription: Subscription = null;
   currentIndex = 0;
   continuousPlay = true;
+  lastIndex = 0;
 
   constructor(private playlistService: PlaylistService,
               private videoPlayerService: VideoPlayerService) { }
 
   ngOnInit() {
     this.videos = this.playlistService.getPlaylist();
-    this.videoPlayerService.loadVideo(this.videos[0], 0, false);
+    this.lastIndex = this.videos.length - 1;
+    this.videoPlayerService.loadVideo(this.videos[0], 0, false, true, false);
     this.currentIndexSubscription = this.videoPlayerService.getCurrentVideoIndex$.subscribe((index) => {
       this.currentIndex = index;
     });
@@ -32,8 +34,18 @@ export class VideoPlaylistComponent implements OnInit, OnDestroy {
 
   onEnded() {
     if (this.currentIndex < this.videos.length - 1 && this.continuousPlay) {
-      this.videoPlayerService.loadVideo(this.videos[this.currentIndex + 1], this.currentIndex + 1, true);
+      this.playNextVideo();
     }
+  }
+
+  playNextVideo() {
+    const nextIndex = this.currentIndex + 1;
+    this.videoPlayerService.loadVideo(this.videos[nextIndex], nextIndex, true, nextIndex !== this.lastIndex, true);
+  }
+
+  playPreviousVideo() {
+    const previousIndex = this.currentIndex - 1;
+    this.videoPlayerService.loadVideo(this.videos[previousIndex], previousIndex, true, true, previousIndex !== 0);
   }
 
   onContinuousPlayToggle() {

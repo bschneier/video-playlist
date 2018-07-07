@@ -13,8 +13,8 @@ export class VideoPlayerService {
 
   constructor(private scrollToService: ScrollToService) { }
 
-  public loadVideo(video: Video, index: number, play: boolean): void {
-    this.currentVideoSubject.next({ video, play });
+  public loadVideo(video: Video, index: number, play: boolean, hasNext: boolean, hasPrevious: boolean): void {
+    this.currentVideoSubject.next({ video, play, hasNext, hasPrevious });
     this.currentVideoIndexSubject.next(index);
 
     const config: ScrollToConfigOptions = {

@@ -1,11 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { ScrollToService, ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { VideoPlayerService } from './video-player.service';
-import { VideoSource, Video, LoadVideoRequest } from '../../shared/types';
+import { Video, LoadVideoRequest } from '../../shared/types';
 
 describe('VideoPlayerService', () => {
-  const testVideo = new Video(65, 'thumbnail-source',
-    [ new VideoSource('video/mp4', 'video-source') ], 'poster-path', 'video description');
+  const testVideo = {
+    length: 65,
+    thumbnail: 'testVideoThumnailSource',
+    sources: [ { type: 'video/mp4', src: 'video-source' } ],
+    poster: 'poster-path',
+    title: 'video description'
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +22,7 @@ describe('VideoPlayerService', () => {
   describe('loadVideo()', () => {
     it('should scroll to selected item', inject([VideoPlayerService], (service: VideoPlayerService) => {
       const scrollToSpy = spyOn(ScrollToService.prototype, 'scrollTo');
-      service.loadVideo(testVideo, 1, true);
+      service.loadVideo(testVideo, 1, true, true, true);
       expect(scrollToSpy).toHaveBeenCalled();
     }));
 
@@ -29,7 +34,7 @@ describe('VideoPlayerService', () => {
         }
       });
       expect(lastVideoEmitted).toBeUndefined();
-      service.loadVideo(testVideo, 1, true);
+      service.loadVideo(testVideo, 1, true, true, true);
       expect(lastVideoEmitted).toEqual(testVideo);
     }));
 
@@ -42,7 +47,7 @@ describe('VideoPlayerService', () => {
         }
       });
       expect(lastVideoIndexEmitted).toBeUndefined();
-      service.loadVideo(testVideo, testIndexValue, true);
+      service.loadVideo(testVideo, testIndexValue, true, true, true);
       expect(lastVideoIndexEmitted).toEqual(testIndexValue);
     }));
   });
@@ -50,7 +55,7 @@ describe('VideoPlayerService', () => {
   it('getCurrentVideo should emit current value on subscribe', inject([VideoPlayerService],
       (service: VideoPlayerService) => {
     let lastVideoEmitted: Video;
-    service.loadVideo(testVideo, 1, true);
+    service.loadVideo(testVideo, 1, true, true, true);
     expect(lastVideoEmitted).toBeUndefined();
     service.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
@@ -64,7 +69,7 @@ describe('VideoPlayerService', () => {
       (service: VideoPlayerService) => {
     let lastVideoIndexEmitted: number;
     const testIndexValue = 2;
-    service.loadVideo(testVideo, testIndexValue, true);
+    service.loadVideo(testVideo, testIndexValue, true, true, true);
     expect(lastVideoIndexEmitted).toBeUndefined();
     service.getCurrentVideoIndex$.subscribe((value: number) => {
       if (value) {

@@ -2,18 +2,28 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { VideoPlayerComponent } from './video-player.component';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
-import { Video, VideoSource } from '../../shared/types';
 
 describe('VideoPlayerComponent', () => {
   let component: VideoPlayerComponent;
   let fixture: ComponentFixture<VideoPlayerComponent>;
   let videoPlayerService: VideoPlayerService;
   const testVideos = [
-    new Video(20, 'testVideoThumnailSource1', [ new VideoSource('video/mp4', 'video-source') ],
-      'poster-path1', 'regular'),
-    new Video(40, 'testVideoThumnailSource2', [ new VideoSource('video/youtube', 'youtube-source') ],
-      'poster-path2', 'youtube')
+    {
+      length: 20,
+      thumbnail: 'testVideoThumnailSource1',
+      sources: [ { type: 'video/mp4', src: 'video-source' } ],
+      poster: 'poster-path1',
+      title: 'regular'
+    },
+    {
+      length: 40,
+      thumbnail: 'testVideoThumnailSource2',
+      sources: [ { type: 'video/youtube', src: 'youtube-source' } ],
+      poster: 'poster-path2',
+      title: 'youtube'
+    }
   ];
+
   const videoOptions = {
     regular: {},
     youtube: {
@@ -53,30 +63,30 @@ describe('VideoPlayerComponent', () => {
     describe(`when a ${value.title} video is loaded`, () => {
       it('should load the video sources', () => {
         const videoSourceSpy = spyOn(component.videoPlayer, 'src');
-        videoPlayerService.loadVideo(value, 0, false);
+        videoPlayerService.loadVideo(value, 0, false, true, true);
         expect(videoSourceSpy).toHaveBeenCalledWith(value.sources);
       });
 
       it('should load the video poster', () => {
         const videoPosterSpy = spyOn(component.videoPlayer, 'poster');
-        videoPlayerService.loadVideo(value, 0, false);
+        videoPlayerService.loadVideo(value, 0, false, true, true);
         expect(videoPosterSpy).toHaveBeenCalledWith(value.poster);
       });
 
       it('should set the correct video options', () => {
-        videoPlayerService.loadVideo(value, 0, false);
+        videoPlayerService.loadVideo(value, 0, false, true, true);
         expect(component.videoOptions).toEqual(videoOptions[value.title]);
       });
 
       it('should play the video if the play flag is set', () => {
         const videoPlaySpy = spyOn(component.videoPlayer, 'play');
-        videoPlayerService.loadVideo(value, 0, true);
+        videoPlayerService.loadVideo(value, 0, true, true, true);
         expect(videoPlaySpy).toHaveBeenCalledTimes(1);
       });
 
       it('should not play the video if the play flag is not set', () => {
         const videoPlaySpy = spyOn(component.videoPlayer, 'play');
-        videoPlayerService.loadVideo(value, 0, false);
+        videoPlayerService.loadVideo(value, 0, false, true, true);
         expect(videoPlaySpy).not.toHaveBeenCalled();
       });
     });

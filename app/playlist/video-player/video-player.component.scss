@@ -5,3 +5,27 @@
 .vjs-youtube-mobile.vjs-has-started .vjs-big-play-button {
   display: none !important;
 }
+
+.vjs-icon-next-item::before, .vjs-icon-previous-item::before {
+  font-size: 1.8em;
+  line-height: 1.67;
+}
+
+.video-js .vjs-icon-next-item,
+.video-js .vjs-icon-previous-item {
+  cursor: pointer;
+  outline: none;
+
+  &.vjs-icon-disabled {
+    color: gray;
+    cursor: default;
+
+    &::before {
+      text-shadow: none;
+    }
+  }
+}
+
+.video-js .vjs-play-control:focus {
+  outline: none;
+}

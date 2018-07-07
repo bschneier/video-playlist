@@ -1,6 +1,6 @@
 <div *ngIf="videos.length > 0" class="row justify-content-center video-playlist-main-container">
   <div class="col-12 col-md-7 col-lg-6 video-player-container">
-    <video-player (onEnded)="onEnded()"></video-player>
+    <video-player (onEnded)="onEnded()" (onPlayNext)="playNextVideo()" (onPlayPrevious)="playPreviousVideo()"></video-player>
   </div>
   <div class="col-12 col-md-5 col-lg-4 video-list-container">
     <div class="video-list-heading">
@@ -13,7 +13,10 @@
       <playlist-item *ngFor="let video of videos; index as i"
         [video]="video"
         [index]="i"
-        [selected]="currentIndex === i"></playlist-item>
+        [selected]="currentIndex === i"
+        [hasNext]="i !== lastIndex"
+        [hasPrevious]="i !== 0">
+      </playlist-item>
     </div>
   </div>
 </div>
