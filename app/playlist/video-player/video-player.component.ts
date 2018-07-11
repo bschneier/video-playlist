@@ -67,15 +67,20 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
     this.videoPlayer.on('loadedmetadata', () => {
       if (this.currentVideoIsYouTube && this.shouldBePlaying && this.videoPlayer.paused()) {
-        this.videoPlayer.one('click', () => {});
+        setTimeout(() => {
+          this.videoPlayer.one('click', () => {});
+        }, 750);
+      }
+      else if (this.shouldBePlaying && this.videoPlayer.paused()) {
+        this.videoPlayer.play();
       }
     });
 
     this.videoSubscription = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
+        this.shouldBePlaying = value.play;
         if (value.video.sources[0].type === 'video/youtube') {
           this.currentVideoIsYouTube = true;
-          this.shouldBePlaying = value.play;
           this.videoOptions = {
             techOrder: ['youtube'],
             youtube: {
