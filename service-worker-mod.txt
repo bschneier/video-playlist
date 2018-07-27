@@ -1,5 +1,0 @@
-onFetch(event) {
-  if(req.url.indexOf('.mp4') !== -1) {
-    return;
-  }
-}
