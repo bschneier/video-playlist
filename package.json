@@ -54,7 +54,6 @@
     "awesome-typescript-loader": "5.0.0",
     "compression-webpack-plugin": "1.1.11",
     "copy-webpack-plugin": "4.5.1",
-    "copyfiles": "^2.0.0",
     "css-loader": "0.28.11",
     "express": "4.16.2",
     "express-static-gzip": "0.3.2",
