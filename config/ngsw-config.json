@@ -4,9 +4,7 @@
     "name": "app",
     "installMode": "prefetch",
     "resources": {
-      "files": [
-        "/index.html"
-      ],
+      "files": [],
       "versionedFiles": [
         "/*.css.gz",
         "/*.js.gz",
