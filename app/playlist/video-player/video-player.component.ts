@@ -20,7 +20,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   type = '';
   videoSubscription: Subscription = null;
   videoPlayer: videojs.Player = null;
-  videoOptions: object = {};
+  videoOptions: object = {
+    techOrder: ['youtube'],
+    youtube: {
+      iv_load_options: 3
+    }
+  };
   nextButton: any;
   previousButton: any;
   currentVideoIsYouTube = false;
@@ -79,18 +84,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.videoSubscription = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
         this.shouldBePlaying = value.play;
-        if (value.video.sources[0].type === 'video/youtube') {
-          this.currentVideoIsYouTube = true;
-          this.videoOptions = {
-            techOrder: ['youtube'],
-            youtube: {
-              iv_load_options: 3
-            }
-          };
-        }
-        else {
-          this.videoOptions = {};
-        }
+        this.currentVideoIsYouTube = value.video.sources[0].type === 'video/youtube';
 
         this.videoPlayer.src(value.video.sources);
         this.videoPlayer.poster(value.video.poster);

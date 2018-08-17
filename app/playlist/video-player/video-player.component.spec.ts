@@ -73,11 +73,6 @@ describe('VideoPlayerComponent', () => {
         expect(videoPosterSpy).toHaveBeenCalledWith(value.poster);
       });
 
-      it('should set the correct video options', () => {
-        videoPlayerService.loadVideo(value, 0, false, true, true);
-        expect(component.videoOptions).toEqual(videoOptions[value.title]);
-      });
-
       it('should play the video if the play flag is set', () => {
         const videoPlaySpy = spyOn(component.videoPlayer, 'play');
         videoPlayerService.loadVideo(value, 0, true, true, true);
