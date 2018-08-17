@@ -16,20 +16,33 @@
 }
 
 .playlist-item-thumb {
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
+
+  @media (min-width: $ipad-width) {
+    height: 5rem;
+    width: 5rem;
+  }
 }
 
 .playlist-item-description {
-  height: 5rem;
-  padding-left: .5rem;
+  height: 4rem;
+
+  @media (min-width: $ipad-width) {
+    height: 5rem;
+  }
 }
 
 .playlist-item-thumb-container {
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
   float: left;
   margin-right: .25rem;
+
+  @media (min-width: $ipad-width) {
+    height: 5rem;
+    width: 5rem;
+  }
 }
 
 .image-loading {

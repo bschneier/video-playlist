@@ -2,9 +2,12 @@
 
 .video-playlist-header {
   text-align: center;
-  padding: 1rem 0.5rem;
   color: white;
   background-color: mat-color($app-primary);
+
+  @media (min-width: $ipad-width) {
+    padding: 1rem 0.5rem;
+  }
 }
 
 header {
