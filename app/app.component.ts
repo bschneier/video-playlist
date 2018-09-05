@@ -16,8 +16,6 @@ export class AppComponent {
   constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    (window as any).HELP_IMPROVE_VIDEOJS = false;
-
     if (!navigator.onLine) {
       this.showOfflineBanner();
     }

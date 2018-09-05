@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import { Subscription } from 'rxjs/Subscription';
 import { VideoPlayerService } from '../video-player-service/video-player.service';
 import { LoadVideoRequest } from '../../shared/types';
-import * as videojs from 'video.js';
+import videojs from 'video.js';
 import 'videojs-youtube';
 import './video-player.component.scss';
 
@@ -20,11 +20,15 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   type = '';
   videoSubscription: Subscription = null;
   videoPlayer: videojs.Player = null;
-  videoOptions: object = {
+  youtubeOptions: object = {
     techOrder: ['youtube'],
     youtube: {
-      iv_load_options: 3
+      iv_load_options: 3,
+      modestbranding: 1
     }
+  };
+  localOptions: videojs.PlayerOptions = {
+    techOrder: ['html5']
   };
   nextButton: any;
   previousButton: any;
@@ -32,6 +36,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   shouldBePlaying = false;
   nextIsDisabled = false;
   previousIsDisabled = false;
+  isMobile = false;
 
   constructor(private videoPlayerService: VideoPlayerService) { }
 
@@ -45,7 +50,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
     this.previousButton = (videojs as any).extend(videojsButton, {
       constructor() {
-        (videojsButton as any).apply(this, arguments);
+        videojsButton.apply(this, arguments);
         this.addClass('vjs-icon-previous-item');
         this.controlText('Previous Video');
       },
@@ -54,7 +59,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
     this.nextButton = (videojs as any).extend(videojsButton, {
       constructor() {
-        (videojsButton as any).apply(this, arguments);
+        videojsButton.apply(this, arguments);
         this.addClass('vjs-icon-next-item');
         this.controlText('Next Video');
       },
@@ -67,33 +72,37 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.videoPlayer.getChild('controlBar').addChild('NextButton', {}, 2);
 
     this.videoPlayer.on('ended', () => {
+      if (this.isMobile && !this.currentVideoIsYouTube && this.videoPlayer.isFullscreen() ) {
+        this.videoPlayer.exitFullscreen();
+      }
+
       this.onEnded.emit();
     });
 
     this.videoPlayer.on('loadedmetadata', () => {
-      if (this.currentVideoIsYouTube && this.shouldBePlaying && this.videoPlayer.paused()) {
-        setTimeout(() => {
-          this.videoPlayer.one('click', () => {});
-        }, 750);
-      }
-      else if (this.shouldBePlaying && this.videoPlayer.paused()) {
-        this.videoPlayer.play();
-      }
+      setTimeout(() => {
+        if (this.shouldBePlaying && this.videoPlayer.paused()) {
+          setTimeout(() => {
+            this.videoPlayer.one('click', () => {});
+          }, 750);
+        }
+      }, 350);
     });
 
     this.videoSubscription = this.videoPlayerService.getCurrentVideo$.subscribe((value: LoadVideoRequest) => {
       if (value) {
         this.shouldBePlaying = value.play;
         this.currentVideoIsYouTube = value.video.sources[0].type === 'video/youtube';
+        this.videoPlayer.options(this.currentVideoIsYouTube ? this.youtubeOptions : this.localOptions);
 
         this.videoPlayer.src(value.video.sources);
         this.videoPlayer.poster(value.video.poster);
 
         this.nextIsDisabled = !value.hasNext;
         this.previousIsDisabled = !value.hasPrevious;
-        (this.videoPlayer as any).getChild('controlBar').getChild('NextButton')
+        this.videoPlayer.getChild('controlBar').getChild('NextButton')
             .toggleClass('vjs-icon-disabled', () => !value.hasNext);
-        (this.videoPlayer as any).getChild('controlBar').getChild('PreviousButton')
+        this.videoPlayer.getChild('controlBar').getChild('PreviousButton')
             .toggleClass('vjs-icon-disabled', () => !value.hasPrevious);
 
         if (value.play) {
@@ -101,6 +110,8 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.isMobile = this.isMobileDevice();
   }
 
   playPrevious(): void {
@@ -113,6 +124,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     if (!this.nextIsDisabled) {
       this.onPlayNext.emit();
     }
+  }
+
+  isMobileDevice() {
+    return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1);
   }
 
   ngOnDestroy() {
